@@ -5,10 +5,13 @@ function sumN(n){
     }
     return total
 }
+   // O(n)
 
 function betterSumN(n){
     return n * (n + 1) / 2
 }
+
+   // O(1)
 
 function countUpAndDown(n){
     console.log('Going up!');
@@ -31,3 +34,19 @@ function printAllPairs(n){
     }
 } 
   //  O(n) * O(n) = O(n^2)
+
+function logAtLeast5(n){
+    for (let i = 1; i <= Math.max(5, n); i++){  // O(n)
+        console.log(i);
+    }
+}
+
+  // O(n)
+
+function logAtMost5(n){
+    for (let i = 1; i <= Math.min(5, n); i++){   // O(1)
+        console.log(i);
+    }
+}
+
+  // O(1)
