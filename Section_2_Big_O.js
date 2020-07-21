@@ -50,3 +50,24 @@ function logAtMost5(n){
 }
 
   // O(1)
+
+
+  // Space Complexity
+
+function sum(arr){
+    let total = 0;           // set one number
+    for (let i = 0; i < arr.length; i++){    // set one number
+        total += arr[i];       // action within loop changes number
+    }                          // but does not take new space
+    return total;
+} 
+  // O(1) space complexity
+
+function double(arr){
+    let newArr = [];               // set new array
+    for (let i = 0; i < arr.length; i++) {   // set one number
+        newArr.push(2 * arr[i]);        // space necessary for new array 
+    }                                 // is directly proportional to size of arr   
+    return newArr;
+}  
+  // O(n) space complexity
