@@ -14,10 +14,25 @@ function sum(x, y){
 } 
 
 
-
-
-
 // 2. Explore concrete examples
+// - Come up with concrete examples that help to understand the basic problem
+// - Examples provide sanity checks that the eventual solution works
+// - User stories / Unit tests
+// - Start with SIMPLE examples (input + output)
+// - Progress to more complex examples
+// - Explore examples with empty inputs
+// - Explore examples with invalid inputs
+
+// Write a function which takes in a string and returns counts of each character within
+
+// charCount('aaaa') // {a: 4}
+// charCount('hello') // {h: 1, e: 1, l: 2, o: 1}
+
+
+
+
+
+
 // 3. Break it down
 // 4. Solve / simplify
 // 5. Look back and refactor
