@@ -13,3 +13,15 @@ let instructor = {
 
 let names = ['Layla', 'Ben', 'Dan'];
 let values = [true, {}, [], 2, 'awesome'];
+
+// Array Operation Performance //
+
+// insertion - .push() / .pop()  : O(1)
+//             .shift() / .unshift()  : O(n)
+// searching - O(n)
+// access - O(1)         
+
+// .concat() : O(n)         //     forEach/map/filter/reduce/etc.  : O(n)
+// .slice()  : O(n)
+// .splice() : O(n)
+// .sort()   : O(nlogn)
