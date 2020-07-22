@@ -51,7 +51,7 @@ function charCountPlan(str){
 // - write a simplified solution
 // - reincorporate the difficulty back into the problem 
 
-function charCount(str){
+function charCountFirstAttempt(str){
     let returnObj = {};
     for (let i = 0; i < str.length; i++){
         const char = str[i].toLowerCase()
@@ -66,3 +66,57 @@ function charCount(str){
 
 
 // 5. Look back and refactor
+// - Can you check the result?
+// - Can you derive the result differently?
+// - Can you understand your code at a glance?
+// - Can you use the result or method for some other problem?
+// - Can you improve the performance of your solution?
+// - Can you think of other ways to refactor?
+// - How have other people solved this problem?
+
+function charCountFinal(str){
+    let returnObj = {};
+    for (let i = 0; i < str.length; i++){
+        const char = str[i].toLowerCase();
+        if (/[a-z0-9]/.test(char)) {
+            if (returnObj[char] > 0){
+                returnObj[char]++;
+            } else {
+                returnObj[char] = 1;
+            }
+        }
+    }
+    return returnObj;
+}
+
+function charCountRefactor1(str){
+    let returnObj = {};
+    for (let char of str) {
+        char = char.toLowerCase();
+        if (/[a-z0-9]/.test(char)){
+            returnObj[char] = ++returnObj[char] || 1;
+        }
+    }
+    return returnObj;
+}
+
+function isAlphaNumeric(char){
+    let code = char.charCodeAt(0);
+    if (!(code > 47 && code < 58) && 
+        !(code > 64 && code < 91) &&
+        !(code > 96 && code < 123)){
+            return false;
+    }
+    return true;
+}
+
+function charCountRefactor2(str){
+    let returnObj = {};
+    for (let char of str) {
+        if (isAlphaNumeric(char)){
+            char = char.toLowerCase();          
+            returnObj[char] = ++returnObj[char] || 1;      
+        }
+    }
+    return returnObj;
+}
