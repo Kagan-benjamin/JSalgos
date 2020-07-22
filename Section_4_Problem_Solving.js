@@ -43,17 +43,26 @@ function charCountPlan(str){
     // return object
 }
 
+
+// 4. Solve / simplify
+// - solve the problem if you can. if not, solve a simpler version.
+// - find the core difficulty in what you're trying to do
+// - temporarily ignore that difficulty 
+// - write a simplified solution
+// - reincorporate the difficulty back into the problem 
+
 function charCount(str){
     let returnObj = {};
-    str.forEach(char => {
-        
-    })
+    for (let i = 0; i < str.length; i++){
+        const char = str[i].toLowerCase()
+        if (returnObj[char] > 0){
+            returnObj[char]++;
+        } else {
+            returnObj[char] = 1;
+        }
+    }
+    return returnObj;
 }
 
 
-
-
-
-
-// 4. Solve / simplify
 // 5. Look back and refactor
