@@ -1,4 +1,4 @@
-// Problem Solving
+// Problem Solving //
 
 // 1. Understand the problem
 // - Can I restate the problem in my own words?
@@ -29,10 +29,31 @@ function sum(x, y){
 // charCount('hello') // {h: 1, e: 1, l: 2, o: 1}
 
 
-
-
-
-
 // 3. Break it down
+// - Explicitly write out the steps that you need to take
+// - This forces you to think about your code before writing + catch lingering issues
+
+function charCountPlan(str){
+    // build object to return answer
+    // loop over string for each char...
+    // - look at each letter, lowercase it, 
+    // - if no letter, add key + 1 value
+    // - if letter already exists, increment
+    // - if char isn't alphanumeric, do nothing
+    // return object
+}
+
+function charCount(str){
+    let returnObj = {};
+    str.forEach(char => {
+        
+    })
+}
+
+
+
+
+
+
 // 4. Solve / simplify
 // 5. Look back and refactor
