@@ -93,12 +93,83 @@ function validAnagram(str1, str2){               // Posted solution
 }
 
 
+                //  Multiple Pointers //
+// .creating pointers or values that correspond to an index or 
+// .position and move towards the beginning, end or middle based
+// .on a certain condition.   -very efficient for solving w/ minimal space complexity
+
+// - Write a function called sumZero which accepts a sorted array of integers. The
+// - function should find the first pair where the sum is 0. Return an array that
+// - includes both values that sum to zero or undefined if there is no pair.
+//   sumZero([-3, -2, -1, 0, 1, 2, 3]) => [-3, 3] // sumZero([1, 2, 3]) => undefined
+
+function naiveSumZero(arr){                          // O(n^2)
+    for(let i = 0; i < arr.length; i++){             // O(n)
+        for(let j = i + 1; j < arr.length; j++){     // nested O(n)
+            if(arr[i] + arr[j] === 0){
+                return [arr[i], arr[j]];
+            }
+        }
+    }
+}
+
+function sumZero(arr){                             // O(n)
+    let left = 0;
+    let right = arr.length - 1;
+    while(left < right){                           // O(n)
+        let sum = arr[left] + arr[right];
+        if(sum === 0){
+            return [arr[left], arr[right]];
+        } else if(sum > 0){
+            right--;
+        } else {
+            left++;
+        }
+    }
+}
+
+// - implement a function called countUniqueValues, which accepts a sorted
+// - array, and counts the unique values in the array. There can be negative
+// - numbers in the array, but it will always be sorted.
+
+function findUniqueValues(arr){         //O(n)         // You wrote this
+    let uniqueVal = []; 
+    let left = 0; 
+    let right = arr.length - 1;
+    while(left < right){                                 // O(n)
+        if(!(uniqueVal.includes(arr[left]))){
+            uniqueVal.push(arr[left]);
+            left++;
+        } else if(!(uniqueVal.includes(arr[right]))){
+            uniqueVal.push(arr[right]);
+            right--;
+        } else if(uniqueVal.includes(arr[left])){
+            left++;
+        } else {
+            right--;
+        }
+    }
+    return uniqueVal.length
+}
+
+function countUniqueValues(arr){   
+    if(arr.length === 0){
+        return 0;
+    }                      // O(n)
+    let i = 0;
+    for (let j = 1; j < arr.length; j++){                // O(n)
+        if(arr[i] !== arr[j]){
+            arr[i] = arr[j];
+            i++
+        } 
+    }
+    return i + 1
+}
 
 
 
 
 
-// .multiple pointers
 // .sliding window
 // .divide and conquer
 // .dynamic programming 
