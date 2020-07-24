@@ -46,6 +46,51 @@ function same(arr1, arr2){                           // O(n)
     return true;
 }
 
+// - Given two strings, write a function to determine if the second string
+// - is an anagram of the first. Return true or false.
+
+function findAnagram(str1, str2){                // You wrote this
+    if(str1.length !== str2.length){
+        return false;
+    }
+    let obj1 = {}
+    let obj2 = {}
+    for(let char of str1){
+        obj1[char] = (obj1[char] || 0) + 1
+    }
+    for(let char of str2){
+        obj2[char] = (obj2[char] || 0) + 1
+    }
+    for(let key in obj1){
+        if(!(key in obj2)){
+            return false
+        }
+        if(obj2[key] !== obj1[key]){
+            return false
+        }
+    }
+    return true
+}
+
+function validAnagram(str1, str2){               // Posted solution
+    if(str1.length !== str2.length){
+        return false;
+    }
+    const lookup = {};
+    for(let i = 0; 0 < str1.length; i++){
+        let char = str1[i];
+        lookup[char] ? lookup[char] += 1 : lookup[char] = 1;
+    }
+    for(let i = 0; i < str2.length; i++){
+        let char = str2[i];
+        if (!lookup[char]){                     // 0 val is falsey, if 0 comes in there
+            return false;                       // is an extra letter and returns false
+        } else {
+            lookup[char] -= 1;
+        }
+    }
+    return true;
+}
 
 
 
