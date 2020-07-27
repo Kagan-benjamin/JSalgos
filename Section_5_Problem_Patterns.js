@@ -1,6 +1,6 @@
 // Problem Solving Patterns //
 
-// Frequency Counters
+                        // Frequency Counters
 // .this pattern uses objects or sets to collect values/frequencies of values
 // .this can often avoid the need for nested loops or O(n^2) operations w/ arrays or strings.
 
@@ -152,10 +152,10 @@ function findUniqueValues(arr){         //O(n)         // You wrote this
     return uniqueVal.length
 }
 
-function countUniqueValues(arr){   
+function countUniqueValues(arr){         // O(n)      // Posted Solution
     if(arr.length === 0){
         return 0;
-    }                      // O(n)
+    }                     
     let i = 0;
     for (let j = 1; j < arr.length; j++){                // O(n)
         if(arr[i] !== arr[j]){
@@ -167,11 +167,83 @@ function countUniqueValues(arr){
 }
 
 
+                        //  Sliding Window //
+// .This pattern involves creating a window which can either be an array or
+// .number from one position to another.
+// .Depending on a certain condition, the window either increases or closes (and
+// . a new window is created) - Useful for keeping track of a subset of data in array
+
+// - Write a function called maxSubarraySum which accepts an array of integers
+// - and a number called n. The function should calculate the maximum sum of n 
+// - consecutive elements in the array.  maxSubarraySum([4,2,1,6],2) => 7
+
+function maxSubArraySum(arr, n){         //  O(n^2)   // naive solution
+    let maxSum = 0;
+    for(let i = 0; i < arr.length - n + 1; i++){      // O(n)
+        let temp = 0;
+        for(let j = 0; j < n; j++){                   // nested O(n)
+            temp += arr[i + j];
+        }
+        if(temp > maxSum){
+            maxSum = temp;
+        }
+    }
+    return maxSum;
+}
+
+function maxSubarraySum(arr, n){      // O(n)    // sliding window solution
+    let maxSum = 0;
+    let tempSum = 0;
+    if(arr.length < n) return null;           
+    for(let i = 0; i < n; i++){                 //  O(n)
+        maxSum += arr[i];
+    }
+    tempSum = maxSum;
+    for(let i = n; i < arr.length; i++){        // performs 1 operation per loop,
+        tempSum = tempSum - arr[i - n] + arr[i]; // so is not nested
+        maxSum = Math.max(maxSum, tempSum);
+    }
+    return maxSum;
+}
 
 
+                            //  Divide And Conquer
+// .This pattern involves dividing a data set into smaller chunks and then repeating a 
+// .process with a subset of data. This pattern can tremendously decrease time complexity.
 
-// .sliding window
-// .divide and conquer
+// - Given a sorted array of integers, write a function called search, that accepts a 
+// - value and returns the index where the value passed to the function is located. 
+// - If the value is not found, return -1.
+
+function searchNaive(arr, n){                // O(n)   Linear Search
+    for(let i = 0; i < arr.length; i++){
+        if(arr[i] === n){
+            return i;
+        } 
+    }
+    return -1;
+}
+
+function search(arr, n){                      // O(logn) Binary Search
+    let min = 0;
+    let max = arr.length - 1;
+
+    while (min < max){                        
+        let mid = Math.floor((min + max)/2);
+        let element = arr[mid];
+
+        if (element < n){
+            min = mid + 1;
+        } else if (element > n){
+            max = mid - 1;
+        } else {
+            return mid;
+        }
+    }
+    return -1;
+}
+
+
 // .dynamic programming 
 // .greedy algorithms
 // .backtracking
