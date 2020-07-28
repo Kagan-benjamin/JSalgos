@@ -55,6 +55,46 @@ function myFactorialIterative(n){
     return total;
 }
 
+//  | Common Pitfalls -
+
+// .No base case // maximum call stack size exceeded 
+// .No return or returns the wrong thing // never hits base case, call stack exceeded
+// .All of these result in a stack overflow
+
+
 // | Use helper method recursion and pure recursion to solve more difficult problems -
 
+// Helper Method example:
 
+function collectOddValues(arr){                  // outer function enables
+    let result = [];                          // the data array (result) to persist
+                                              // through recursive function calls
+    function helper(helperInput){
+        if(helperInput.length === 0){
+            return;
+        }
+        if(helperInput[0] % 2 !== 0){
+            result.push(helperInput[0]);
+        }
+        helper(helperInput.slice(1));    // shrink array by 1, call recursively
+    }
+    helper(arr);
+    return result;
+}
+
+// Pure Recursion example:
+  // tips: for arrays, use methods like .slice(), the spread operator and .concat() to
+  // make copies of arrays so you do not mutate them
+
+function pureCollectOddValues(arr){
+    let newArray = [];
+
+    if(arr.length === 0){
+        return newArray;
+    }
+    if(arr[0] % 2 !== 0){
+        newArray.push(arr[0]);
+    }
+    newArray = newArray.concat(pureCollectOddValues(arr.slice(1)));
+    return newArray;
+}
