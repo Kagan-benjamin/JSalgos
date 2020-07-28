@@ -90,3 +90,45 @@ function isSubsequence(str1, str2) {                   // multiple pointers
     }
     return false;
   }
+
+  function minSubArrayLen(arr, n){                   // sliding window
+    let start = 0;
+    let end = 0;
+    let total = 0;
+    let minLength = Infinity;
+    
+    while(start < arr.length){
+        if(total < n && end < arr.length){
+            total += arr[end];
+            end++
+        } else if (total >= n) {
+            let length = end - start
+            minLength = Math.min(minLength, length);
+            total -= arr[start];
+            start++;
+        } else {
+            break;
+        }
+    }
+    if(minLength == Infinity){ 
+        return 0;
+    } else {
+        return minLength;
+    }
+}
+
+function findLongestSubstring(str){                      // sliding window
+  let start = 0;
+  let longest = 0;
+  let counter = {};
+  
+  for(let i = 0; i < str.length; i++){
+      let char = str[i] 
+      if(counter[char]){
+          start = Math.max(start, counter[char])   // sets start of window to value that
+      }                                           // corresponds with last duplicate char 
+      longest = Math.max(longest, i - start + 1)  // index         
+      counter[char] = i + 1 
+  }
+  return longest;
+}
