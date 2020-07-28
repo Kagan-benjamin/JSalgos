@@ -37,7 +37,23 @@ function iterativeCountDown(n){         // Iterative
     console.log('done!');
 }
 
+function sumRange(n){
+    if(n === 1) return 1;      // base case
+    return n + sumRange(n-1);  // variable input
+}
 
+function myFactorialRecursive(n){
+    if(n === 1) return 1;
+    return n * myFactorial(n-1)
+}
+
+function myFactorialIterative(n){
+    let total = 1;
+    for (let i = n; i > 1; i--){
+        total = total * i
+    }
+    return total;
+}
 
 // | Use helper method recursion and pure recursion to solve more difficult problems -
 
