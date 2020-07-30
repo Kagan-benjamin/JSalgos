@@ -12,10 +12,25 @@
 function myInsertionSort(arr){                   // O(n^2)
     for(let i = 1; i < arr.length; i++){                  // O(n)
         let curVal = arr[i]
+        let idx;
         for(let j = i - 1; j >= 0 && arr[j] > curVal; j--){  // O(n)
             arr[j+1] = arr[j];
+            idx = j;
         }
-        arr[j+1] = curVal;
+        arr[idx+1] = curVal;
+    }
+    return arr;
+}
+
+function workingInsertionSort(arr){
+    for (let i = 1; i < arr.length; i++) {
+        let curVal = arr[i];
+        let j = i - 1;
+        while (j >= 0 && arr[j] > curVal) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = curVal;
     }
     return arr;
 }
