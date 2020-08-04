@@ -158,4 +158,55 @@ class SinglyLinkedList{
         return true;
     }
 
+// .insert() pseudocode:
+// 1. This function should accept a target index and a new value.
+// 2. If the index is less than zero or greater than the length, return false.
+// 3. If the index is the same as the length, push a new node to the end of the list.
+// 4. If the index is 0, unshift a new node to the start of the list.
+// 5. Otherwise, using get, access the node at the index - 1
+// 6. Set the next property on that node to be the new node.
+// 7. Set the next property on the new node to be the previous next
+// 8. Increment the length and return true
+
+    insert(idx, val){
+        if(idx < 0 || idx > this.length) return false;
+        if(idx === this.length){
+           return !!this.push(val);
+        }
+        if(idx === 0){
+            return !!this.unshift(val);
+        }
+        let newNode = new Node(val);
+        let prevNode = this.get(idx - 1);
+        let temp = prevNode.next;
+        prevNode.next = newNode;
+        newNode.next = temp;
+        this.length++;
+        return true;
+    }
+
+// .remove() pseudocode:
+// 1. The function accepts an index value to remove and returns true or false
+// 2. If the index is less than zero or greater than / equal to the list length,
+// return undefined.
+// 3. If the index is the same as the length - 1, .pop() the list.
+// 4. If the index is 0, .shift() the list.
+// 5. Otherwise, using the get method, access the node at index - 1.
+// 6. Set the next property on that node to be the next of the next node.
+// 7. Decrement the list length and return the value of the removed node.
+
+    remove(idx){
+        if(idx < 0 || idx >= this.length) return false;
+        if(idx === this.length - 1){
+            return this.pop();
+        }
+        if(idx === 0){
+            return this.shift();
+        }
+        let prevNode = this.get(idx - 1);
+        let removeNode = prevNode.next;
+        prevNode.next = removeNode.next;
+        this.length--;
+        return removeNode;
+    }
 }
