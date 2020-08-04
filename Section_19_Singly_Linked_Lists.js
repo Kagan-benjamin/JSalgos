@@ -25,23 +25,6 @@
 
 // Basic Setup:
 
-// .push() pseudocode:
-// 1. This function should accept a value. 2. Create a new node using the value passed in
-// 3. If there is no head, set the head and tail to be the newly created node.
-// 4. Otherwise, set the next property on the tail to be the new node and set the
-// tail property on the list to be the newly created node. Increment length by 1.
-
-// .pop() pseudocode:
-// 1. If there are no nodes in the list, return undefined
-// 2. Otherwise, loop through the list until you reach the tail
-// 3. Set the next property of the 2nd to last node to null
-// 4. Set the tail of the list to be that 2nd to last node.
-// 5. Decrement list length by 1 and return the value of the node removed
-
-
-
-
-
 class Node{
     constructor(val){
         this.val = val;
@@ -56,6 +39,12 @@ class SinglyLinkedList{
         this.length = 0;
     }
 
+// .push() pseudocode:
+// 1. This function should accept a value. 2. Create a new node using the value passed in
+// 3. If there is no head, set the head and tail to be the newly created node.
+// 4. Otherwise, set the next property on the tail to be the new node and set the
+// tail property on the list to be the newly created node. Increment length by 1.
+
     push(val){
         let newNode = new Node(val);
         if(!this.head){
@@ -68,6 +57,13 @@ class SinglyLinkedList{
         this.length++;
         return this;
     } 
+
+// .pop() pseudocode:
+// 1. If there are no nodes in the list, return undefined
+// 2. Otherwise, loop through the list until you reach the tail
+// 3. Set the next property of the 2nd to last node to null
+// 4. Set the tail of the list to be that 2nd to last node.
+// 5. Decrement list length by 1 and return the value of the node removed    
 
     pop(){
         if(!this.head){
@@ -88,4 +84,49 @@ class SinglyLinkedList{
         }
         return currentNode;
     }
+
+// .shift() pseudocode:
+// 1. If there are no nodes, return undefined.
+// 2. Store the current head property in a variable.
+// 3. Set the head property to be the current head's next property
+// 4. Decrement the length by 1
+// 5. Return the value of the node removed
+
+    shift(){
+        if(!this.head) return undefined;
+        let headNode = this.head;
+        this.head = headNode.next;
+        this.length--;
+        if(this.length === 0){
+            this.tail = null;
+        }
+        return headNode;
+    }
+
+// .unshift() pseudocode:
+// 1. This function should accept a value
+// 2. Create a new node using the passed in value.
+// 3. If there is no head property on the list, set the head and tail
+// to be the newly created node. 
+// 4. Otherwise, set the newly created node's next property to be the
+// current head property on the list.
+// 5. Set the head property on the list to be the newly created node
+// 6. Increment the list length by 1 and return the linked list.
+
+    unshift(val){
+        let newNode = new Node(val);
+        if(!this.head){
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+        this.length++;
+        return this;
+    }
+
+
+
+
 }
