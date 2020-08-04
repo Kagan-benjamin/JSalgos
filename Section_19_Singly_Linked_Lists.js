@@ -209,4 +209,40 @@ class SinglyLinkedList{
         this.length--;
         return removeNode;
     }
+
+// .reverse() pseudocode:
+// 1. Swap the head and the tail
+// 2. Create a variable for next, prev, and curNode (starts at head)
+// 3. Loop through the list and set the next variable to the next property on whatever 
+// node is. 
+// 4. Set the next property on the node to be whatever prev is.
+// 5. Set prev to be the value of the curNode variable. 
+// 6. Set the node variable to be the value of the next variable. 
+
+    reverse(){
+        let node = this.head;
+        this.head = this.tail;
+        this.tail = node;
+
+        let prev = null;
+        let next;
+
+        for(let i = 0; i < this.length; i++){
+            next = node.next; 
+            node.next = prev;
+            prev = node;
+            node = next;
+        }
+        return this;
+    }
 }
+
+// Singly Linked Lists Big-O //
+
+// .insert() - O(1)                        | Better than arrays
+// .remove() - It depends, O(1) or O(n)    | Better than arrays
+// .find() - O(n)                          | Worse than arrays
+// .access() - O(n)                        | Worse than arrays
+
+// The idea of a list data structure that consists of nodes is the
+// foundation for other data structures like Stacks and Queues
