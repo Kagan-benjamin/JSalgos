@@ -1,3 +1,14 @@
+function charCountRefactor1(str){
+    let returnObj = {};
+    for (let char of str) {
+        char = char.toLowerCase();
+        if (/[a-z0-9]/.test(char)){
+            returnObj[char] = ++returnObj[char] || 1;
+        }
+    }
+    return returnObj;
+}
+
 function stringifyNumbers(obj){
     let newObj = {};
     for(let key in obj){

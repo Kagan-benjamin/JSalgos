@@ -57,3 +57,73 @@ function nestedEvenSum (obj) {
     }
     return sum;
 }
+
+// REPL.it Singly Linked Lists 
+
+class Node {
+    constructor(val){
+      this.val = val;
+      this.next = null;
+    }
+  }
+  
+  class SinglyLinkedList {
+    constructor(){
+      this.head = null;
+      this.tail = null;
+      this.length = 0;
+    }
+  
+    push(val){
+      let newNode = new Node(val);
+      if(!this.head){
+        this.head = newNode;
+        this.tail = this.head;
+      } else {
+        this.tail.next = newNode;
+        this.tail = newNode; 
+  
+      }
+      this.length++;
+      return this;
+    }
+  
+    pop(){
+      if(!this.head){
+        return undefined;
+      }
+      if(this.length === 1){
+        let temp = this.head;
+        this.head = null;
+        this.tail = null;
+        this.length--;
+        return temp;
+      }
+      let lastNode = this.tail;
+      let curNode = this.head;
+      
+      while(curNode.next !== lastNode){
+        curNode = curNode.next;
+      }
+      this.tail = curNode;
+      this.tail.next = null;
+      this.length--;
+      if(this.length === 0){
+        this.head = null;
+        this.tail = null;
+      }
+      return lastNode;
+    }
+  
+  }
+  
+  let list1 = new SinglyLinkedList;
+  let node1 = new Node('a');
+  let node2 = new Node('b');
+  let node3 = new Node('c');
+  let node4 = new Node('d');
+  
+  list1.push(node1)
+  list1.push(node2)
+  list1.push(node3)
+  list1.push(node4)
