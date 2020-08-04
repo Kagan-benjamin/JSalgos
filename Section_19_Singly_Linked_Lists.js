@@ -126,7 +126,36 @@ class SinglyLinkedList{
         return this;
     }
 
+// .get() pseudocode:
+// 1. This function should accept an index.
+// 2. If the index is less than zero or greater than / equal to the length
+// of the list, return null.
+// 3. Loop through the list until you reach the index and return the node at
+// that specific index. 
 
+    get(idx){
+        if(idx < 0 || idx >= this.length) return null;
+        let counter = 0;
+        let current = this.head;
+        while(counter !== idx){
+            current = current.next;
+            counter++;
+        }
+        return current;
+        
+    }
 
+// .set() pseudocode:
+// 1. This function should accept a target index and a value.
+// 2. Use the get function to find the target node. 
+// 3. If the node is not found, return false.
+// 4. If the node is found, set the val to be the passed in val and return true.
+
+    set(idx, val){
+        let target = this.get(idx);
+        if(!target) return false;
+        target.val = val;
+        return true;
+    }
 
 }
