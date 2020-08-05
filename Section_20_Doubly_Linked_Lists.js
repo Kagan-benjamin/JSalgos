@@ -186,8 +186,8 @@ class DoublyLinkedList {
 
     remove(idx){
         if(idx < 0 || idx >= this.length) return false;
-        if(idx === 0) return this.shift();
-        if(idx === this.length - 1) return this.pop();
+        if(idx === 0) return !!this.shift();
+        if(idx === this.length - 1) return !!this.pop();
 
         let target = this.get(idx);
         let prevNode = target.prev;
@@ -197,9 +197,16 @@ class DoublyLinkedList {
         prevNode.next = nextNode;
         nextNode.prev = prevNode;
         this.length--;
-        return true;
+        return target;
     }
-
-
-
 }
+
+                     // Doubly Linked Lists Big-O //
+// Insertion - O(1)
+// Removal - O(1)
+// Searching - O(n) (technically n/2, but negligible w/ huge datasets)
+// Access - O(n)
+
+// .If you need to access your data from the end, efficient
+// .Easily move backwards or forwards, finding nodes can be done in half 
+// the time, HOWEVER, it takes up more memory to keep track of .prev property. 
