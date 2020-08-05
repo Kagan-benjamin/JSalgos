@@ -196,6 +196,16 @@ set(idx, val){
   return true;
 }
 
+get(idx){
+  if(idx < 0 || idx >= this.length) return null;
+  let counter = 0;
+  let curNode = this.head
+  while(counter !== idx){
+      curNode = curNode.next;
+      counter++;
+  }
+  return curNode;
+}
 
 
 }
