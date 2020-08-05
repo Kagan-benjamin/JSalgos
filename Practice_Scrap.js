@@ -188,4 +188,14 @@ class DoublyLinkedList{
     return target;
 }
 
+set(idx, val){
+  if(idx < 0 || idx >= this.length) return false;
+  let newNode = new Node(val);
+  let target = this.get(idx);
+  target.val = val;
+  return true;
+}
+
+
+
 }
