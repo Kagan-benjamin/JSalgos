@@ -127,3 +127,35 @@ class Node {
   list1.push(node2)
   list1.push(node3)
   list1.push(node4)
+
+  // Doubly Linked List Exercises //
+
+  class Node{
+    constructor(val){
+        this.val = val
+        this.next = null;      
+        this.prev = null;      
+    }
+}
+
+class DoublyLinkedList{
+    constructor(val){
+        this.length = 0;
+        this.head = null;
+        this.tail = null;
+    }
+    push(val){
+        let newNode = new Node(val);
+        if(!this.head){
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            this.tail.next = newNode;
+            newNode.prev = this.tail;
+            this.tail = newNode;
+        }
+        this.length++;
+        return this;
+    }
+    
+}
