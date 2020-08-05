@@ -207,5 +207,20 @@ get(idx){
   return curNode;
 }
 
+pop(){
+  if(!this.head) return undefined;
+  let target = this.tail
+  if(this.length === 1){
+      this.head = null;
+      this.tail = null;
+  } else {
+      let newTail = target.prev;
+      newTail.next = null;
+      target.prev = null;
+      this.tail = newTail;
+  }
+  this.length--
+  return target;
+}
 
 }
