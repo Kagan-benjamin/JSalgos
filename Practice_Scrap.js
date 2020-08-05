@@ -223,4 +223,22 @@ pop(){
   return target;
 }
 
+insert(idx, val){
+  if(idx < 0 || idx > this.length) return false;
+  if(idx === 0) return !!this.unshift(val);
+  if(idx === this.length) return !!this.push(val);
+  
+  let newNode = new Node(val);
+  let nextNode = this.get(idx);
+  let prevNode = nextNode.prev;
+  
+  prevNode.next = newNode;
+  newNode.next = nextNode;
+  nextNode.prev = newNode;
+  newNode.prev = prevNode;
+  
+  this.length++;
+  return true;
+}
+
 }
