@@ -199,6 +199,29 @@ class DoublyLinkedList {
         this.length--;
         return target;
     }
+
+    reverse() {
+        if (!this.head) {
+          return null;
+        }
+    
+        let currentNode = this.head;
+        this.tail = currentNode;
+    
+        while (currentNode !== null) {
+          let prev = currentNode.prev;
+          currentNode.prev = currentNode.next;
+          currentNode.next = prev;
+    
+          if (currentNode.prev) {
+            currentNode = currentNode.prev;
+          } else {
+            this.head = currentNode;
+            break;
+          }
+        }
+        return this;
+      }
 }
 
                      // Doubly Linked Lists Big-O //
