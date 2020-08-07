@@ -1,4 +1,4 @@
-                                // Stacks and Queues //
+                                    // Stacks //
 // What is a stack?
 // .abstract data structure that follows a LAST IN FIRST OUT (LIFO) pattern.
 // .the last element added to the stack will be the first element removed from the stack.
@@ -75,3 +75,40 @@ class Stack {
 // Search - O(n) | Access - O(n)  Necessary to iterate through linked list
 
 
+                                  // Queues //
+// FIFO (First in, first out) data structure
+// .waiting queues to connect
+// .background tasks
+// .uploading resources
+// .print queue / task processing
+
+
+// Array Queue
+
+let q = [];
+q.push('first');
+q.push('second');
+q.push('third');
+// ['first', 'second', 'third']
+q.shift() // 'first' | ['second', 'third']
+q.shift() // 'second' | ['third']
+q.shift() // 'third' | []
+
+
+// Linked List Queue
+
+class Node {
+    constructor(val){
+        this.val = val;
+        this.next = null;
+    }
+}
+
+class Queue {
+    constructor(){
+        this.first = null;
+        this.last = null;
+        this.length = 0;
+    }
+
+}
