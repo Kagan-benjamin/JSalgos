@@ -111,4 +111,35 @@ class Queue {
         this.length = 0;
     }
 
+    enqueue(val){
+        const newNode = new Node(val);
+        if(!this.first){
+            this.first = newNode;
+            this.last = newNode;
+        } else {
+            this.last.next = newNode;
+            this.last = newNode;
+        }
+        return ++this.length;
+    }
+
+    dequeue(){
+        if(!this.first) return null;
+        let temp = this.first;
+        if(this.length === 1){
+            this.first = null;
+            this.last = null;
+        }
+        this.first = this.first.next;
+        this.length--;
+        return temp.val;
+    }
 }
+
+// Big-O of Queues
+
+// Insertion - O(1) | Removal - O(1)
+// Searching - O(n) | Access - O(n)
+
+// .Queues are useful for processing tasks and are foundational for more complex
+// data structures. Insertion and removal are performed in constant time O(1).
