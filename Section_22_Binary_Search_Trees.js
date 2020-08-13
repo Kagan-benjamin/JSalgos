@@ -34,3 +34,66 @@
 //                  11 29 50 91
 //                   \  \    / \
 //                   12 32  72 99            
+
+
+// Raw Binary Search Tree Implementation:
+
+class Node {
+    constructor(val){
+        this.val = val;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+class BinarySearchTree {
+    constructor(){
+        this.root = null;
+    }
+}
+
+let tree = new BinarySearchTree();
+tree.root = new Node(10);
+tree.root.left = new Node(7);
+tree.root.right = new Node(15);
+tree.root.left.right = new Node(9);
+
+// Binary Search Tree Insert pseudocode:
+// 1. Is there a root? If no, set it.
+// 2. If root, is the val less or greater than the root?
+// 3. If it is greater:
+// 3a. check to see if there is a node to the right
+//  3aa. if yes, move to that node and repeat these steps.
+//  3ab. If not, add that node as the right property
+// 4. If it is less:
+// 4a. check to see if there is a node to the left
+//  4aa. if yes, move to that node and repeat.
+//  4ab. if not, add that node as the left proprety
+
+insert(val){
+    const newNode = new Node(val);
+    if(!this.root){
+      this.root = newNode;
+      return this;
+    } 
+    let current = this.root;
+    while(true){
+        if(val < current.val){
+            if(!current.left){
+                current.left = newNode;
+                return this;
+            } else {
+                current = current.left;
+            }
+        } else if (val > current.val){
+            if(!current.right){
+                current.right = newNode;
+                return this;
+            } else {
+                current = current.right;
+            }
+        } else {
+            return undefined;
+        }
+    }
+}
