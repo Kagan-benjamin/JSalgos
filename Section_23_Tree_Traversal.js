@@ -29,5 +29,37 @@ function bFS(tree){
     return visited;
 }
 
+// Depth-First Search (DFS) - PreOrder
+// .create a variable to store the values of visited nodes.
+// .store the root of the BST in a variable called current.
+// .Write a helper function which accepts a node:
+//   -Push the value of the node to the variable that stores the values
+//   -If the node has a left property, call the helper function with the node.left
+//   -If the node has a right property, call the helper function with the node.right
+// .Invoke the helper function with the current variable
+// .Return the array of visited values. 
 
+function dFSPreOrder(tree){
+    let result = [];
+    let current = tree.root;
+    function traverse(node){
+        result.push(node.val)
+        if(node.left) traverse(node.left);
+        if(node.right) traverse(node.right);
+    }
+    traverse(current)
+    return result;
+}
+
+function dFSPostOrder(tree){
+    let result = [];
+    let current = tree.root;
+    function traverse(node){
+        if(node.left) traverse(node.left);
+        if(node.right) traverse(node.right);
+        result.push(node.val);
+    }
+    traverse(current);
+    return result;
+}
 
