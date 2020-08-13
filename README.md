@@ -20,4 +20,6 @@
 18. Data Structures Intro
 19. Singly Linked Lists
 20. Doubly Linked Lists
-21. Stacks and Queuess
+21. Stacks and Queues
+22. Binary Search Trees
+23. Tree Traversal
