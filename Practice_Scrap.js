@@ -242,3 +242,73 @@ insert(idx, val){
 }
 
 }
+// PUZZLES //
+
+// sortedFrequency()
+
+
+function howMany(arr, idx, n){
+  let counter = 0;
+  let target = n;
+  let i = idx;
+  // console.log(counter, 'idx: ' + i, 'target: ' + target);
+  if(arr.length < 3){
+      if(arr[0] === n){
+          counter++;
+      }
+      if(arr[1] === n){
+          counter++;
+      }
+      if(counter === 0){
+          return -1;
+      } else {
+          return counter;
+      }
+  }
+  while(arr[i] === target && i > -1){
+      counter++;
+      i--;
+      // console.log('loop left', 'i: ' + i, counter)    
+  }
+  i = idx + 1;
+  while(arr[i] === target && i < arr.length){
+      counter++;
+      i++;
+      //  console.log('loop right', 'i: ' + i, counter)   
+  }
+  if(counter <= 0){
+      return -1;
+  } else {
+      // console.log(counter)
+      return counter;
+  }
+}
+
+function sortedFrequency(arr, n){
+//   console.log('[' + arr + ']', n)
+
+let start = 0;
+let end = arr.length - 1;
+let mid = Math.floor((start + end) / 2);
+if(arr[mid] === n || arr.length < 3){
+  let ans = howMany(arr, mid, n);  
+  // console.log(ans)
+  return ans;
+} 
+
+if(arr[mid] > n){
+    let halfArr = arr.slice(0, mid);
+    sortedFrequency(halfArr, n);
+}
+if(arr[mid] < n){
+    let halfArr = arr.slice(mid);
+    sortedFrequency(halfArr, n)
+}
+}
+
+let testArr = [1, 1, 2, 2, 2, 2, 3]
+
+console.log(sortedFrequency(testArr, 1))
+sortedFrequency(testArr, 2)
+sortedFrequency(testArr, 3)
+sortedFrequency(testArr, 4)
