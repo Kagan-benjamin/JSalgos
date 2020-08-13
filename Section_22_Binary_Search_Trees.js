@@ -38,6 +38,12 @@
 
 // Raw Binary Search Tree Implementation:
 
+let tree = new BinarySearchTree();
+tree.root = new Node(10);
+tree.root.left = new Node(7);
+tree.root.right = new Node(15);
+tree.root.left.right = new Node(9);
+
 class Node {
     constructor(val){
         this.val = val;
@@ -50,13 +56,7 @@ class BinarySearchTree {
     constructor(){
         this.root = null;
     }
-}
 
-let tree = new BinarySearchTree();
-tree.root = new Node(10);
-tree.root.left = new Node(7);
-tree.root.right = new Node(15);
-tree.root.left.right = new Node(9);
 
 // Binary Search Tree Insert pseudocode:
 // 1. Is there a root? If no, set it.
@@ -82,18 +82,43 @@ insert(val){
             if(!current.left){
                 current.left = newNode;
                 return this;
-            } else {
-                current = current.left;
-            }
+            } 
+            current = current.left;   
         } else if (val > current.val){
             if(!current.right){
                 current.right = newNode;
                 return this;
-            } else {
-                current = current.right;
-            }
+            } 
+            current = current.right;
         } else {
             return undefined;
         }
     }
 }
+
+// find() pseudocode:
+
+find(val){
+    let current = this.root;
+    if(val === this.root.val) return current;
+    while(true){
+        if(val < current.val){
+            if(!current.left) return false;
+            current = current.left;
+        } else if(val > current.val){
+            if(!current.right) return false;
+            current = current.right;
+        } else {
+            return current;
+        }
+    }
+}
+
+}
+
+// Big-O of Binary Search Trees
+
+//  Insertion / Searching - O(logn) As you add another level of children (double 
+// the size of the tree), you only need to search 1 level deeper.   *AVG/BEST CASE*
+
+// Completely 1-sided tree results in O(n)  *WORST CASE*
