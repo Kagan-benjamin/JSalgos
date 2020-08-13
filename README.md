@@ -14,3 +14,10 @@
 12. Selection Sort
 13. Insertion Sort
 14. Bubble / Selection / Insertion Comparison
+15. Merge Sort
+16. Quick Sort
+17. Radix Sort
+18. Data Structures Intro
+19. Singly Linked Lists
+20. Doubly Linked Lists
+21. Stacks and Queuess
