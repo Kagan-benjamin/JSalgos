@@ -63,3 +63,29 @@ function dFSPostOrder(tree){
     return result;
 }
 
+function dFSInOrder(tree){
+    let result = [];
+    let current = tree.root;
+    function traverse(node){
+        if(node.left) traverse(node.left);  // node.left && traverse(node.left)
+        result.push(node.val);
+        if(node.right) traverse(node.right);
+    }
+    traverse(current);
+    return result;
+}
+
+// Methods of Tree Traversal Discussion
+
+// Time complexity between BFS and DFS is the same, however:
+
+// .Breadth-first search uses up a lot of memory for wide trees.
+// .In this case, depth-first needs to hold fewer nodes in memory.
+// .For skinny trees, BFS does not need to keep track of many nodes.
+// .For a very deep tree, BFS may be more efficient.
+
+// DFS inOrder - used to produce representation of tree in order
+// DFS preOrder - can be used to 'export' a tree structure for easy copying 
+// (tree relationships are maintained in data representation)
+
+
