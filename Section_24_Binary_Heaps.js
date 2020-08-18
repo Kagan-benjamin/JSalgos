@@ -21,6 +21,39 @@ Min Binary Heap - inverse of MaxBH.
 
 // Implement basic heaps w/ methods //
 
+class MaxBinaryHeap {
+    constructor(){
+        this.values = [];
+    }
+
+/* .insert() pseudocode:
+1. Push the new value into the values property on the heap.
+2. Bubble up:
+  -create a variable for idx which is equal to last index in values
+  -create parentIdx variable which is Math.floor((idx-1)/2)
+  -keep looping while value at child idx > parent idx:
+    -swap the values between the child and parent index.
+    -set the idx to be the old parentIdx and continue.    */
+
+    insert(val){
+        this.values.push(val);
+        if(this.values.length === 1) return this;
+        let idx = this.values.length - 1;
+        let parentIdx = Math.floor((idx-1/2));
+        let temp = this.values[idx];
+        while(this.values[idx] > this.values[parentIdx]){
+          this.values[idx] = this.values[parentIdx];
+          this.values[parentIdx] = temp;
+          idx = parentIdx;
+          parentIdx = Math.floor((idx-1/2));
+        }
+        return this.values;
+      }
+
+
+
+}
+
 // .For any index of an array n:
 // .The left child is stored at 2n+1 and the right child at 2n+2.
 // .For any child at index n, its parent is at index Math.floor((n-1)/2)
