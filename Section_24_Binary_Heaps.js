@@ -16,7 +16,10 @@ before moving to another level of depth. Left children are filled first.
 
 Min Binary Heap - inverse of MaxBH.
 .Binary heaps are very commonly used to implement Priority Queues.
-.They are also used with graph traversal algorithms.              */
+.They are also used with graph traversal algorithms.             */
+// .For any index of an array n:
+// .The left child is stored at 2n+1 and the right child at 2n+2.
+// .For any child at index n, its parent is at index Math.floor((n-1)/2)
 
 
 // Implement basic heaps w/ methods //
@@ -37,26 +40,59 @@ class MaxBinaryHeap {
 
     insert(val){
         this.values.push(val);
-        if(this.values.length === 1) return this;
+        this.bubbleUp();
+    }
+    bubbleUp(){
         let idx = this.values.length - 1;
-        let parentIdx = Math.floor((idx-1/2));
-        let temp = this.values[idx];
-        while(this.values[idx] > this.values[parentIdx]){
-          this.values[idx] = this.values[parentIdx];
-          this.values[parentIdx] = temp;
-          idx = parentIdx;
-          parentIdx = Math.floor((idx-1/2));
+        const element = this.values[idx];
+        while(idx > 0){
+            let parentIdx = Math.floor((idx - 1)/2);
+            let parent = this.values[parentIdx];
+            if(element <= parent) break;
+            this.values[parentIdx] = element;
+            this.values[idx] = parent;
+            idx = parentIdx;
         }
-        return this.values;
-      }
+    }
+/* .extractMax() pseudocode:
+1. let this.values[0] = this.values[end], this.values.pop() 
+ -Swap root node with last node and pop last node from array.
+ -Child nodes: 2n+1 / 2n+2
+2. Compare new root with 2 children. Whichever is larger, swap with root.
+3. If both are smaller, don't swap.
+*/
+
+    extractMax(){
+        if(this.values.length === 1) return this.values.pop();
+        const oldRoot = this.values[0];
+        this.values[0] = this.values[this.values.length-1];
+        this.values.pop();
+        let idx = 0;
+
+        while(this.values[idx] < this.values[child1] || 
+        this.values[idx] < this.values[child2]){
+            let child1 = (2*idx) + 1;
+            let child2 = (2*idx) + 2;
+            if(this.values[child1] >= this.values[child2]){
+                let temp = this.values[child1];
+                this.values[child1] = this.values[idx];
+                this.values[idx] = temp;
+                idx = child1;
+            } else {
+                let temp = this.values[child2];
+                this.values[child2] = this.values[idx];
+                this.values[idx] = temp;
+                idx = child2;
+            }
+        }
+        return oldRoot;
+    }
 
 
 
 }
 
-// .For any index of an array n:
-// .The left child is stored at 2n+1 and the right child at 2n+2.
-// .For any child at index n, its parent is at index Math.floor((n-1)/2)
+
 
 
 
