@@ -126,4 +126,13 @@ class HashTable{
             }
         }
     }
+
+// .keys() pseudocode:
+// 1. Loops through the hash table array and returns an array of keys in the table.
+
+// .values() pseudocode:
+// 1. Loops through the hash table array and returns an array of values in the table.
+
+
+
 }
