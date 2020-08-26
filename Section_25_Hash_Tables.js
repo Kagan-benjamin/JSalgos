@@ -114,5 +114,16 @@ class HashTable{
 // 3. Retrieves the key-value pair in the hash table.
 // 4. If the key isn't found, return undefined.
 
-
+    get(key){
+        let index = this._hash(key);
+        if(!this.keyMap[index]){ 
+            return undefined;
+        } else {
+            for(let i = 0; i < this.keyMap[index].length; i++){
+                if(this.keyMap[index][i][0] == key){
+                    return this.keyMap[index][i][1];
+                }
+            }
+        }
+    }
 }
