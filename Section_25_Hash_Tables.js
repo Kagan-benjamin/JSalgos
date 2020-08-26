@@ -51,3 +51,33 @@ function hash(key, arrLength){
 // .Only hashes strings.
 // .Not in constant time - O(n) relative to key length.
 // .Could be more random.
+
+// Better Hash Function:
+
+function hash(key, arrayLen){
+    let total = 0;
+    let WEIRD_PRIME = 31;               // use prime numbers to reduce collisions
+    for(let i = 0; i < Math.min(key.length, 100); i++){
+        let value = key[i].charCodeAt(0) - 96;
+        total = (total * WEIRD_PRIME + value) % arrayLen;
+    }
+    return total;
+}
+
+/* Prime Numbers:
+.The prime number in the hash is helpful in spreading out keys more uniformly.
+.It's also helpful if the array that you're putting values into has a prime length.
+--> this dramatically reduces collisions. Use a larger prime number.
+
+ Dealing with Collisions:
+.Even with a large array and a great hash function, collisions are inevitable.
+
+.Separate Chaining: At each index in our array we store values using a more
+sophisticated data structure (eg array or linked list).
+.This allows us to store multiple key-value pairs at the same index.
+
+.Linear Probing: When we find a collision, we search through the array to find
+the next empty slot. No need to used a nested structure. **Limited to size of hash**
+*/
+
+
