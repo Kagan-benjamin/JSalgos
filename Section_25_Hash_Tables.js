@@ -161,3 +161,16 @@ class HashTable{
         return valuesArr;
     }
 }
+
+                                // Hash Table Big-O //
+                                
+/*| Average Case:      Worst Case: O(n)
+|.insertion - O(1)
+|.deletion - O(1)
+|.access - O(1)
+
+With a good quality hash function, items will be evenly distributed so constant time
+is possible for above cases.
+*/
+
+
