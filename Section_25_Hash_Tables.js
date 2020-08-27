@@ -43,8 +43,8 @@ hash('pink', 10)
 
 function hash(key, arrLength){
     let total = 0;
-    for(let i = 0; i < str.length; i++){
-        total += (str.charCodeAt(i) % arrLength);
+    for(let i = 0; i < key.length; i++){
+        total += (key[i].charCodeAt(0) % arrLength);
     }
     return total;
 }
@@ -130,9 +130,34 @@ class HashTable{
 // .keys() pseudocode:
 // 1. Loops through the hash table array and returns an array of keys in the table.
 
+    keys(){
+        let keysArr = [];
+        for(let i = 0; i < this.keyMap.length; i++){
+            if(this.keyMap[i]){
+                for(let j = 0; j < this.keyMap[i].length; j++){
+                    if (!keysArr.includes(this.keyMap[i][j][0])){
+                        keysArr.push(this.keyMap[i][j][0]);
+                    }
+                }
+            }
+        }   
+        return keysArr;
+    }
+
 // .values() pseudocode:
 // 1. Loops through the hash table array and returns an array of values in the table.
 
-
-
+    values(){
+        let valuesArr = [];
+        for(let i = 0; i < this.keyMap.length; i++){
+            if(this.keyMap[i]){
+                for(let j = 0; j < this.keyMap[i].length; j++){
+                    if (!valuesArr.includes(this.keyMap[i][j][1])){
+                    valuesArr.push(this.keyMap[i][j][1]);
+                    }
+                }
+            }
+        }
+        return valuesArr;
+    }
 }
