@@ -30,3 +30,19 @@ var kidsWithCandies = function(candies, extraCandies) {
     }
     return ans;
 };
+
+var shuffle = function(nums, n) {
+    let result = [nums[0]];
+    let yStart = n;
+    let temp;
+    for(let i = 1; i <= n; i++){
+        if(i < n){
+            result.push(nums[yStart]);
+            yStart++;
+            result.push(nums[i]);
+        } else {
+            result.push(nums[yStart]);
+        }
+    }
+    return result;
+};
