@@ -14,3 +14,19 @@ var runningSum = function(nums){
     }
     return nums;
 }
+
+var kidsWithCandies = function(candies, extraCandies) {
+    let ans = [];
+    let maxCandy = 0;
+    for(let i = 0; i < candies.length; i++){
+        if(candies[i] > maxCandy) maxCandy = candies[i];
+    }
+    for(let i = 0; i < candies.length; i++){
+        if(candies[i] + extraCandies >= maxCandy){
+            ans.push(true);
+        } else {
+            ans.push(false);
+        }
+    }
+    return ans;
+};
