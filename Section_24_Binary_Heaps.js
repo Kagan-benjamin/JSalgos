@@ -68,11 +68,13 @@ class MaxBinaryHeap {
         this.values[0] = this.values[this.values.length-1];
         this.values.pop();
         let idx = 0;
+        let child1 = (2*idx) + 1;
+        let child2 = (2*idx) + 2;
 
         while(this.values[idx] < this.values[child1] || 
         this.values[idx] < this.values[child2]){
-            let child1 = (2*idx) + 1;
-            let child2 = (2*idx) + 2;
+            child1 = (2*idx) + 1;
+            child2 = (2*idx) + 2;
             if(this.values[child1] >= this.values[child2]){
                 let temp = this.values[child1];
                 this.values[child1] = this.values[idx];
@@ -87,10 +89,17 @@ class MaxBinaryHeap {
         }
         return oldRoot;
     }
-
-
-
 }
+
+let test = new MaxBinaryHeap
+
+test.insert(55)
+test.insert(33)
+test.insert(39)
+test.insert(41)
+test.insert(18)
+test.insert(27)
+test.insert(12)
 
 
 
