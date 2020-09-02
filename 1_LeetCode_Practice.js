@@ -66,6 +66,9 @@ WHERE department_id NOT IN (SELECT id FROM departments)
 SELECT patient_id, patient_name, conditions FROM patients 
 WHERE conditions LIKE '%DIAB1%'
 
+SELECT employee_id, COUNT(*) OVER(PARTITION BY team_id)
+AS team_size FROM employee
+
 */
 
 var numIdenticalPairs = function(nums) {
@@ -76,4 +79,18 @@ var numIdenticalPairs = function(nums) {
         }
     }
     return pairCount;
+};
+
+var numJewelsInStones = function(J, S) {
+    let jewelArr = [];
+    let count = 0;
+    for(let char in J){
+        jewelArr.push(J[char]);
+    }
+    for(let char in S){
+        if(jewelArr.includes(S[char])){
+            count++;
+        }
+    }
+    return count;
 };
