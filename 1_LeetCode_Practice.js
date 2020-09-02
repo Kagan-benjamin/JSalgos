@@ -46,3 +46,15 @@ var shuffle = function(nums, n) {
     }
     return result;
 };
+
+var defangIPaddr = function(address) {
+    let str = '';
+    for(let char in address){
+        if(address[char] != '.'){
+            str += address[char];
+        } else {
+            str += '[.]';
+        }
+    }
+    return str;
+};
