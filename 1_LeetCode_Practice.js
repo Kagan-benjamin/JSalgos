@@ -69,6 +69,9 @@ WHERE conditions LIKE '%DIAB1%'
 SELECT employee_id, COUNT(*) OVER(PARTITION BY team_id)
 AS team_size FROM employee
 
+SELECT e.name, eu.unique_id FROM employees
+e LEFT JOIN employeeuni eu ON eu.id = e.id
+
 */
 
 var numIdenticalPairs = function(nums) {
@@ -93,4 +96,18 @@ var numJewelsInStones = function(J, S) {
         }
     }
     return count;
+};
+
+var numberOfSteps  = function(num) {
+    let steps = 0;
+    while(num != 0){
+        if(num % 2 === 0){
+            num = num / 2;
+            steps++;
+        } else {
+            num = num - 1;
+            steps++
+        }
+    }
+    return steps;
 };
