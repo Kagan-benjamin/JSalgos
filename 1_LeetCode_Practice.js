@@ -135,3 +135,16 @@ var smallerNumbersThanCurrent = function(nums) {
     }
     return ans;
 };
+
+var rangeSumBST = function(root, L, R) {
+    let result = [];
+    let current = root;
+    function traverse(node){
+        if(node.val >= L && node.val <= R) result.push(node.val)
+        if(node.left) traverse(node.left);
+        if(node.right) traverse(node.right);
+    }
+    traverse(current)
+    return result.reduce((a,b) => a + b);
+
+};
