@@ -159,3 +159,16 @@ var subtractProductAndSum = function(n) {
     }
     return product - sum;  
 };
+
+var decompressRLElist = function(nums) {
+    let ans = [];
+    for(let i = 0; i < nums.length; i = i+2){
+        let freq = nums[i];
+        let val = nums[i+1];
+        while(freq > 0){
+            ans.push(val);
+            freq--;
+        }
+    }
+    return ans;
+};
