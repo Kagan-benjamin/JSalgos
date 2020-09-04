@@ -148,3 +148,14 @@ var rangeSumBST = function(root, L, R) {
     return result.reduce((a,b) => a + b);
 
 };
+
+var subtractProductAndSum = function(n) {
+    let str = n.toString();
+    let product = 1;
+    let sum = 0;
+    for(let i = 0; i < str.length; i++){
+        product *= parseInt(str[i]);
+        sum += parseInt(str[i]);
+    }
+    return product - sum;  
+};
