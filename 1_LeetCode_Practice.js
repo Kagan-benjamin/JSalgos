@@ -72,6 +72,11 @@ AS team_size FROM employee
 SELECT e.name, eu.unique_id FROM employees
 e LEFT JOIN employeeuni eu ON eu.id = e.id
 
+SELECT sell_date, COUNT(DISTINCT product) AS num_sold,
+GROUP_CONCAT(DISTINCT product ORDER BY product) as products
+FROM activities
+GROUP BY 1
+
 */
 
 var numIdenticalPairs = function(nums) {
@@ -110,4 +115,23 @@ var numberOfSteps  = function(num) {
         }
     }
     return steps;
+};
+
+var smallerNumbersThanCurrent = function(nums) {
+    let ans = [];
+    let count = 0;
+    for(let i = 0; i < nums.length; i++){
+        for(let j = 0; j < nums.length; j++){
+            if(i === j && i != nums.length - 1){
+                continue;
+            } else if(nums[j] < nums[i]){
+                count++;
+            }
+            if(j == nums.length - 1){
+                ans.push(count);
+                count = 0;
+            }
+        }
+    }
+    return ans;
 };
