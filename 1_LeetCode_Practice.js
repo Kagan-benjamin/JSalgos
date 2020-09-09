@@ -172,3 +172,29 @@ var decompressRLElist = function(nums) {
     }
     return ans;
 };
+
+class MovingAverage{
+    constructor(size){
+        this.size = size;
+        this.idx = 0;
+        this.nums = [];
+    }
+}
+
+MovingAverage.prototype.next = function(val) {
+    if(this.size > 0 && this.idx == 0){
+      this.nums.push(val);
+      this.idx++;
+      return this.nums[0];
+    }
+    if(this.size > 0 && this.idx > 0 && this.idx < this.size){
+      this.nums.push(val);
+      this.idx++;
+      return (this.nums.reduce((a,b) => a + b)) / this.idx;  
+    }
+    if(this.idx == this.size){
+      this.nums.shift();
+      this.nums.push(val);
+      return (this.nums.reduce((a,b) => a + b)) / this.idx;  
+    }
+};
