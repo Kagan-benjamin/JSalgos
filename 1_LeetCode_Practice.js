@@ -198,3 +198,19 @@ MovingAverage.prototype.next = function(val) {
       return (this.nums.reduce((a,b) => a + b)) / this.idx;  
     }
 };
+
+var isPalindrome = function(x) {
+    x = x.toString();
+    function test(str){
+        if(str.length == 1) return true;
+        if(str[0] == str[str.length-1] && str.length > 2){
+            str = str.substring(1, str.length-1)
+            return test(str);
+        } else if(str[0] == str[str.length-1] && str.length == 2){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    return test(x);
+};
