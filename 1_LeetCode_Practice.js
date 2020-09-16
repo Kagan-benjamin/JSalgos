@@ -240,3 +240,26 @@ var inorderSuccessor = function(node) {
     result.sort((a,b) => a.val - b.val);
     return result[0]; 
 };
+
+var lengthOfLastWord = function(s) {
+    let charCount = 0;
+    let spaceToggle = false;
+    for(let i = s.length-1; i >= 0; i--){
+        if(s[i] == ' ' && i == s.length-1){
+            spaceToggle = true;  
+            continue;
+        } 
+        if(s[i] == ' ' && spaceToggle == true){
+            continue;    
+        }
+        if(s[i] != ' '){
+            charCount++;
+            spaceToggle = false;
+            continue;
+        }
+        if(s[i] == ' ' && i != s.length-1 && spaceToggle == false){
+            break;
+        }
+    }
+    return charCount;
+};
