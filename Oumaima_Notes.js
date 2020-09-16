@@ -1,5 +1,5 @@
 
-Your company built an in-house calendar tool called HiCal. You want to add a feature to see the times in a day when everyone is available. 
+/* Your company built an in-house calendar tool called HiCal. You want to add a feature to see the times in a day when everyone is available. 
 To do this, you’ll need to know when any team is having a meeting. In HiCal, a meeting is stored as tuples↴ of integers (start_time, end_time). These integers represent the number of 30-minute blocks past 9:00am. 
 
 For example: 
@@ -37,11 +37,6 @@ stock_prices_yesterday = [10, 7, 5, 8, 11, 9]
 
 No "shorting"—you must buy before you sell. You may not buy and sell in the same time step (at least 1 minute must pass).
 pramp
-
-
-
-
-
 
 /////////////////////////////////////////////////////////////////////
 
@@ -84,3 +79,62 @@ function mergeRanges(arr){
 }
 
 mergeRanges(ranges);
+
+*/
+
+/* [ [0,1], [3,5], [4,8], [10,12], [9,10] ] 
+//=> [ [0,1], [3,8], [9,12] ] */
+
+// Sort all incoming meetings by start_idx for adjacent comparisons
+// [ [0,1], [3,5], [4,8], [9,10], [10,12] ]
+// Loop over each meeting:
+//  -If i = arr.length - 1, results.push(arr[i])
+//  -If arr[i+1][0] > arr[i][1] push arr[i] into results, continue
+//  -If arr[i+1][0] <= arr[i][1] && arr[i][1] < arr[i+1][1]:
+//    -set arr[i+1] to [arr[i][0], Math.max(arr[i][1], arr[i+1][1])]
+//  -If arr[i+1][0] <= arr[i][1] && arr[i][1] >= arr[i+1][1]:
+//    -set arr[i+1] = arr[i]
+// Return result
+
+//=> Arr: [[0,1],[3,5],[3,8],[9,10],[10,12]]
+//=> Res:[[0,1],[3,8]]
+
+//=> arr: [[0,1],[3,5],[3,8],[9,10],[9,12]]
+//-> res: [[0,1],[3,8],[9,12]]
+
+/* [(1,3), (2,4)] //=> [[1,4]]
+[(1, 3), (5, 6), (2, 4)] //=> [[1,4],[5,6]]
+[(1,5), (2,3)] //=> [[1,5]]
+[(1,2), (2,3)] //=> [[1,3]]
+*/
+
+let test = [ [0,1], [3,5], [4,8], [10,12], [9,10] ]; 
+let test1 = [ [1,3], [2,4] ];
+let test2 = [ [1,3], [5,6], [2,4] ];
+let test3 = [ [1,5], [2,3] ];
+let test4 = [ [1,2], [2,3] ];
+let test5= [ [1,10], [2,6], [3,5], [7,9] ]
+
+const merge_ranges = arr => {
+  arr.sort((a,b) => a[0] - b[0]);
+  let result = [];
+  for(let i = 0; i < arr.length; i++){
+    if(i == arr.length - 1){
+       result.push(arr[i]);
+       break;
+    }
+    if(arr[i+1][0] > arr[i][1]){
+      result.push(arr[i]);
+    } else if(arr[i+1][0] <= arr[i][1] && arr[i][1] < arr[i+1][1]){
+      let temp = [arr[i][0], Math.max(arr[i][1],arr[i+1][1])];
+      arr[i+1] = temp;
+    } else if(arr[i+1][0] <= arr[i][1] && arr[i][1] >= arr[i+1][1]){
+      arr[i+1] = arr[i];
+    }
+  }
+  result.forEach(el => {
+    console.log(el[0],el[1]);
+  })
+}
+
+merge_ranges(test);
