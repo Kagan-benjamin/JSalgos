@@ -214,3 +214,29 @@ var isPalindrome = function(x) {
     }
     return test(x);
 };
+
+var inorderSuccessor = function(node) {
+    let result = [];
+    let curNode = node;
+    while(curNode.parent){
+        curNode = curNode.parent;
+    }
+    if(curNode.val > node.val) result.push(curNode);
+    function traverse(node, compVal){
+        if(node.left){
+            if(node.left.val > compVal){
+                result.push(node.left);   
+            }
+            traverse(node.left, compVal);
+        }
+        if(node.right){
+            if(node.right.val > compVal){
+                result.push(node.right);
+            }
+            traverse(node.right, compVal);
+        }
+    }
+    traverse(curNode, node.val);
+    result.sort((a,b) => a.val - b.val);
+    return result[0]; 
+};
